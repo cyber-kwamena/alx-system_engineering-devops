@@ -14,7 +14,7 @@ File 6-create_local_variable is a script that creates a new local variable.
 
 File 7-create_global_variable is a script that creates a new global variable.
 
-File 8-true_knowledge is a script that prints the result of the addition of 128 with the value stored in the environment variable TRUEKNOWLEDGE, followed by a new line.
+File 8-true_knowledge is a script that prints the result of the addition of 128 with the value stored in the environment variable TRUE KNOWLEDGE, followed by a new line.
 
 File 9-divide_and_rule is a script that prints the result of POWER divided by DIVIDE, followed by a new line.
 
@@ -33,3 +33,4 @@ File 100-rot13 is a script that encodes and decodes text using the rot13 encrypt
 File 101-odd is a script that prints every other line from the input, starting with the first line.
 
 File 102-water_and_stir is a shell script that adds the two numbers stored in the environment variables WATER and STIR and prints the result.
+More than the G.
