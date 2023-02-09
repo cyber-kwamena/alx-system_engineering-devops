@@ -1,3 +1,14 @@
-#!/usr/bin/env bash
-# Runs software as another user.
+#!/bin/bash
+
+# A script to run the whoami command under the user passed as an argument
+
+# Checking if argument is passed
+if [ -z "$1" ]; then
+    echo "No user argument passed!"
+    exit 1
+fi
+
+# Running the whoami command
+echo "Runnning whoami command for user $1..."
+echo
 sudo -u "$1" whoami
