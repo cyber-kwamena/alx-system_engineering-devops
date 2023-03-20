@@ -1,21 +1,17 @@
 #!/usr/bin/python3
-"""number_of_subscribers function definition"""
+"""A function that queries the Reddit API and
+returns the number of subscribers"""
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """Get number of subreddit subscribers"""
-    subRcheck = requests.get("https://reddit.com/api/search_reddit_names.json",
-                             headers={
-                                 'User-Agent': 'Safari 12.1'
-                             },
-                             params={
-                                 'exact': True,
-                                 'query': subreddit
-                             })
-    if 'error' in subRcheck.json():
+    """returns the number of subscribers"""
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+    }
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 404:
         return 0
-    response = requests.get("https://reddit.com/r/{}/about.json"
-                            .format(subreddit),
-                            headers={'User-Agent': 'Safari 12.1'})
-    return response.json().get('data').get('subscribers')
+    results = response.json().get("data")
+    return results.get("subscribers")
