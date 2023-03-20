@@ -1,29 +1,23 @@
 #!/usr/bin/python3
-"""top_ten function definition"""
+"""A function that queries the Reddit API and
+prints the titles of the first 10 hot posts
+listed for a given subreddit."""
 import requests
 
 
 def top_ten(subreddit):
-    """top_ten method to get the top ten hot articles on a subreddit"""
-    subRcheck = requests.get('https://reddit.com/api/search_reddit_names.json',
-                             headers={
-                                 'User-Agent': 'Safari 12.1'
-                             },
-                             params={
-                                 'exact': True,
-                                 'query': subreddit
-                             })
-    if 'error' in subRcheck.json().keys():
-        print(None)
-    else:
-        response = requests.get("https://reddit.com/r/{}.json"
-                                .format(subreddit),
-                                headers={
-                                    'User-Agent': 'Safari 12.1'
-                                })
-        printRange = 10
-        if len(response.json().get('data').get('children')) < 10:
-            printRange = len(response.json().get('data').get('children'))
-        for i in range(printRange):
-            print(response.json().get('data').get('children')[i].get('data')
-                  .get('title'))
+    """prints the titles of the first 10 hot posts listed"""
+    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+    }
+    params = {
+        "limit": 10
+    }
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
+    if response.status_code == 404:
+        print("None")
+        return
+    results = response.json().get("data")
+    [print(c.get("data").get("title")) for c in results.get("children")]
